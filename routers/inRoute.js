@@ -11,6 +11,10 @@ const multer = require("multer");
 const path = require("path");
 const uploadimg = require("../middleware/multer.js");
 
+router.get("/", (req, res) => {
+  res.status(200).send("Server is up and running!");
+});
+
 // router login dan regis
 router.post("/signup", validate.validateSignup, validateRequest, UserController.signup);
 router.post("/login", validate.validateLogin, validateRequest, UserController.login);
