@@ -4,7 +4,6 @@ const commentSchema = new mongoose.Schema({
   user: { type: mongoose.Schema.Types.ObjectId, ref: "User", required: true },
   name: { type: String }, // Tambahkan properti untuk menyimpan nama pengguna
   comment: { type: String, required: true },
-  sentiment: { type: String, required: true },
   createdAt: { type: Date, default: Date.now },
 });
 
