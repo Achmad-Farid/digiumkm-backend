@@ -20,6 +20,8 @@ db.then(() => {
 // Menyajikan folder 'uploads' secara statis
 app.use("/uploads", express.static("uploads"));
 
+app.set("trust proxy", 1);
+
 // const corsOptions = {
 //   origin: "http://app.example.com", // Mengizinkan hanya dari domain ini
 //   methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
@@ -27,14 +29,14 @@ app.use("/uploads", express.static("uploads"));
 //   optionsSuccessStatus: 204,
 // };
 
-const limiter = rateLimit({
-  windowMs: 15 * 60 * 1000, // 15 menit
-  max: 100, // batasi setiap IP hingga 100 permintaan per windowMs
-  message: "Terlalu banyak permintaan dari IP ini, coba lagi nanti.",
-});
+// const limiter = rateLimit({
+//   windowMs: 15 * 60 * 1000, // 15 menit
+//   max: 100, // batasi setiap IP hingga 100 permintaan per windowMs
+//   message: "Terlalu banyak permintaan dari IP ini, coba lagi nanti.",
+// });
 
 app.use(cors());
-app.use(limiter); // Terapkan rate limiter untuk semua rute
+// app.use(limiter); // Terapkan rate limiter untuk semua rute
 app.use(helmet());
 app.use(express.json());
 //diambil dari index.js
