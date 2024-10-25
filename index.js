@@ -42,9 +42,6 @@ app.use(express.json());
 //diambil dari index.js
 app.use(allRoutes);
 
-// hapus webinar yang tanggalnya sudah lewat
-deleteExpireWebinar();
-
 app.listen(PORT, () => {
   console.log("server running on port " + PORT);
 });
