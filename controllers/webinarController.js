@@ -80,12 +80,10 @@ exports.getWebinarById = async (req, res) => {
   }
 };
 
-// fungsi menambah webinar oleh admin
+// Fungsi menambah webinar oleh admin tanpa multer
 exports.addWebinar = async (req, res) => {
   try {
-    const { title, description, link, startTime, endTime, categories } = req.body;
-    const baseImageUrl = "http://127.0.0.1:3000/";
-    const image = `${baseImageUrl}${req.file.path}`;
+    const { title, description, link, image, startTime, endTime, categories } = req.body;
 
     const webinar = new Webinar({
       title,
@@ -106,15 +104,10 @@ exports.addWebinar = async (req, res) => {
   }
 };
 
+// Fungsi mengedit webinar oleh admin tanpa multer
 exports.editWebinar = async (req, res) => {
-  const baseImageUrl = "http://127.0.0.1:3000/";
   try {
     const updates = { ...req.body };
-
-    // If an image file is uploaded, add it to the updates and prepend the base URL
-    if (req.file) {
-      updates.image = baseImageUrl + req.file.path.replace("uploads/", "");
-    }
 
     const webinar = await Webinar.findByIdAndUpdate(req.params.id, updates, { new: true, runValidators: true });
     if (!webinar) return res.status(404).json({ message: "Webinar not found" });

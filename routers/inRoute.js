@@ -57,8 +57,8 @@ const upload = multer({
 });
 
 // manipulasi webinar (admin)
-router.post("/webinar/add", authenticateJWT, authorizeRole(["admin"]), validate.validateWebinar, upload.single("image"), validateRequest, WebinarController.addWebinar);
-router.patch("/webinar/edit/:id", uploadimg.single("image"), authenticateJWT, authorizeRole(["admin"]), validate.validateWebinarUpdate, validateRequest, WebinarController.editWebinar);
+router.post("/webinar/add", authenticateJWT, authorizeRole(["admin"]), validate.validateWebinar, validateRequest, WebinarController.addWebinar);
+router.patch("/webinar/edit/:id", authenticateJWT, authorizeRole(["admin"]), validate.validateWebinarUpdate, validateRequest, WebinarController.editWebinar);
 router.delete("/webinar/delete/:id", authenticateJWT, authorizeRole(["admin"]), validate.validateWebinarDelete, validateRequest, WebinarController.deleteWebinar);
 
 // router komen dan rating
