@@ -63,7 +63,7 @@ exports.signup = async (req, res) => {
     // Step 2 - Generate a verification token with the user's ID
     const verificationToken = user.generateVerificationToken();
     // Step 3 - Email the user a unique verification link
-    const url = `https://digi-umkm.my.id/verify/${verificationToken}`;
+    const url = `https://digiumkm.vercel.app/verify/${verificationToken}`;
     transporter.sendMail({
       to: email,
       subject: "Verify Your Account",
